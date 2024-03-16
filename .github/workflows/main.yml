@@ -8,11 +8,13 @@ on:
 
 jobs:
   build:
-    - name: Checkout 
-      uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
-    - uses: addnab/docker-run-action@v3
-      with:
-        image: luckycatalex/dev_environment_light:amd64-ubuntu-16.04
-        options: -v ${{ github.workspace }}:/workdir
-        run: "bash -c 'git clone smirnovv2007/buildroot-OrangePI-2G-IOT && cd buildroot-OrangePI-2G-IOT && make orangepi_2g-iot_defconfig && make && cd output/images && tar czf /workdir/image.tar.gz *'"
-        artifacts: image.tar.gz
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: luckycatalex/dev_environment_light:amd64-ubuntu-16.04
+          options: -v ${{ github.workspace }}:/workdir
+          run: "bash -c 'git clone smirnovv2007/buildroot-OrangePI-2G-IOT && cd buildroot-OrangePI-2G-IOT && make orangepi_2g-iot_defconfig && make && cd output/images && tar czf /workdir/image.tar.gz *'"
+          artifacts: image.tar.gz
