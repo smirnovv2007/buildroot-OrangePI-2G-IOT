@@ -1,6 +1,5 @@
 ## Important info
 
-It's old repo and it's never will be added into original repo because differntces between this repo and original is enormous.
 So I renamed this repo and recomend use Vagrant or other virtual machine with Ubintu 16.04 for building of images.
 I added my Vagrant config for it.
 
