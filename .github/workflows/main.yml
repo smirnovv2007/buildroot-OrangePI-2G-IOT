@@ -16,7 +16,7 @@ jobs:
         with:
           image: luckycatalex/dev_environment_light:amd64-ubuntu-16.04
           options: -v ${{ github.workspace }}:/workdir
-          run: "bash -c 'sudo apt install build-essential cpio unzip bc -y && git clone https://github.com/smirnovv2007/buildroot-OrangePI-2G-IOT.git && cd buildroot-OrangePI-2G-IOT && make orangepi_2g-iot_defconfig && make && cd output/images && tar czf /workdir/image.tar.gz *'"
+          run: "bash -c 'sudo apt install build-essential cpio unzip bc -y && git clone https://github.com/smirnovv2007/buildroot-OrangePI-2G-IOT.git && cd buildroot-OrangePI-2G-IOT && make orangepi_2g-iot_defconfig && make && cd output/images && sudo tar czf /workdir/image.tar.gz *'"
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
