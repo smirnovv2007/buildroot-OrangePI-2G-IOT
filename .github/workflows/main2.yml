@@ -16,7 +16,7 @@ jobs:
         with:
           image: luckycatalex/dev_environment_light:amd64-ubuntu-16.04
           options: -v ${{ github.workspace }}:/workdir
-          run: "bash -c 'touch /workdir/image.tar.gz '"
+          run: "bash -c 'sudo touch /workdir/image.tar.gz '"
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
