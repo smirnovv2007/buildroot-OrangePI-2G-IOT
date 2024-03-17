@@ -1,0 +1,24 @@
+name: Test
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: luckycatalex/dev_environment_light:amd64-ubuntu-16.04
+          options: -v ${{ github.workspace }}:/workdir
+          run: "bash -c 'touch /workdir/image.tar.gz *"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: images
+          path: image.tar.gz
